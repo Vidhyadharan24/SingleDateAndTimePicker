@@ -16,6 +16,7 @@ import com.github.florent37.singledateandtimepicker.R;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -435,8 +436,12 @@ public class DoubleDateAndTimePickerDialog extends BaseDialog {
 
     protected void onClose() {
         super.onClose();
-        if (listener != null && okClicked) {
-            listener.onDateSelected(Arrays.asList(pickerTab0.getDate(), pickerTab1.getDate()));
+        if (listener != null) {
+            if (okClicked) {
+                listener.onDateSelected(Arrays.asList(pickerTab0.getDate(), pickerTab1.getDate()));
+            } else {
+                listener.onDateSelected(new ArrayList<Date>());
+            }
         }
     }
 
